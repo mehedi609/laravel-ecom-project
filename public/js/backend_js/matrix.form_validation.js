@@ -1,5 +1,25 @@
 
 $(document).ready(function(){
+	$('#password').click(function () {
+		const current_password = $('#current_password').val()
+		$.ajax({
+			type: 'get',
+			url: '/admin/check-password',
+			data: {
+				'current_password': current_password
+			},
+			success: function (res) {
+				if (res === 'true') {
+					$('#check-password').html(`<small class="text-success pl-2">Password is Correct</small>`)
+				} else {
+					$('#check-password').html(`<small style="color: green">Password is Incorrect</small>`)
+				}
+			},
+			error: function (error) {
+				alert(error)
+			}
+		})
+	})
 	
 	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
 	
@@ -63,16 +83,21 @@ $(document).ready(function(){
 	
 	$("#password_validate").validate({
 		rules:{
-			pwd:{
+			current_password:{
 				required: true,
 				minlength:6,
 				maxlength:20
 			},
-			pwd2:{
+			password:{
+				required: true,
+				minlength:6,
+				maxlength:20
+			},
+			password_confirmation:{
 				required:true,
 				minlength:6,
 				maxlength:20,
-				equalTo:"#pwd"
+				equalTo:"#password"
 			}
 		},
 		errorClass: "help-inline",

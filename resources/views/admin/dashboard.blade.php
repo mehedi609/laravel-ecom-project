@@ -2,6 +2,12 @@
 
 @section('title', 'Admin Dashboard')
 
+@push('css')
+  <link rel="stylesheet" href="{{asset('css/backend_css/matrix-style.css')}}" />
+  <link rel="stylesheet" href="{{asset('css/backend_css/matrix-media.css')}}" />
+@endpush
+
+
 @section('content')
   <!--breadcrumbs-->
   <div id="content-header">
@@ -350,3 +356,15 @@
     </div>
   </div>
 @stop
+
+@push('js')
+  <script src="{{asset("js/backend_js/jquery.flot.min.js")}}"></script>
+  <script src="{{asset("js/backend_js/jquery.flot.resize.min.js")}}"></script>
+  <script src="{{asset("js/backend_js/jquery.peity.min.js")}}"></script>
+  <script src="{{asset("js/backend_js/fullcalendar.min.js")}}"></script>
+  <script src="{{asset("js/backend_js/matrix.js")}}"></script>
+  <script src="{{asset("js/backend_js/matrix.dashboard.js")}}"></script>
+  <script src="{{asset("js/backend_js/jquery.gritter.min.js")}}"></script>
+  <script src="{{asset("js/backend_js/matrix.interface.js")}}"></script>
+  <script src="{{asset("js/backend_js/matrix.chat.js")}}"></script>
+@endpush

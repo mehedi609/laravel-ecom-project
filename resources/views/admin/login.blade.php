@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/backend_css/bootstrap-responsive.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/backend_css/matrix-login.css')}}" />
     <link href="{{asset('fonts/backend_fonts/css/font-awesome.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
   </head>
@@ -65,6 +66,8 @@
 
     <script src="{{asset('js/backend_js/jquery.min.js')}}"></script>
     <script src="{{asset('js/backend_js/matrix.login.js')}}"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
   </body>
 
 </html>

@@ -24,6 +24,11 @@ Route::group(
     Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
     Route::get('login', 'AdminController@login')->name('login');
     Route::post('login', 'AdminController@login')->name('login');
+    Route::get('logout', 'AdminController@logout')->name('logout');
+    Route::get('settings', 'AdminController@settings')->name('settings');
+    Route::get('check-password', 'AdminController@checkPassword')->name('check-password');
+    Route::get('update-password', 'AdminController@updatePassword')->name('update.password');
+    Route::put('update-password', 'AdminController@updatePassword')->name('update.password');
   }
 );
 

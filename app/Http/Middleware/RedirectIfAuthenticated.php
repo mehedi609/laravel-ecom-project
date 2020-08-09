@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,9 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
+        } else {
+          Toastr::warning('Please log in to access', 'Access Denied');
+          return redirect(route('admin.login'));
         }
 
         return $next($request);
