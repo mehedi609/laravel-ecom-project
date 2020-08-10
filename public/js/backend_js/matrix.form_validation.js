@@ -80,7 +80,8 @@ $(document).ready(function(){
 			$(element).parents('.control-group').addClass('success');
 		}
 	});
-	
+
+	// Change password validation
 	$("#password_validate").validate({
 		rules:{
 			current_password:{
@@ -99,6 +100,31 @@ $(document).ready(function(){
 				maxlength:20,
 				equalTo:"#password"
 			}
+		},
+		errorClass: "help-inline",
+		errorElement: "span",
+		highlight:function(element, errorClass, validClass) {
+			$(element).parents('.control-group').addClass('error');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).parents('.control-group').removeClass('error');
+			$(element).parents('.control-group').addClass('success');
+		}
+	});
+
+	$("#add_category").validate({
+		rules:{
+			name:{
+				required:true,
+				minlength: 4,
+				maxlength: 150,
+			},
+			description:{
+				required:true
+			},
+			url:{
+				required:true
+			},
 		},
 		errorClass: "help-inline",
 		errorElement: "span",

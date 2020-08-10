@@ -29,6 +29,9 @@ Route::group(
     Route::get('check-password', 'AdminController@checkPassword')->name('check-password');
     Route::get('update-password', 'AdminController@updatePassword')->name('update.password');
     Route::put('update-password', 'AdminController@updatePassword')->name('update.password');
+
+    // Category Routes (Admin)
+    Route::resource('category', 'CategoryController');
   }
 );
 

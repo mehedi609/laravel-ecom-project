@@ -16,8 +16,8 @@
     <div id="breadcrumb"><a href="{{route('admin.dashboard')}}" title="Go to Home" class="tip-bottom">
         <i class="icon-home"></i> Home
       </a>
-      <a href="#">Settings</a> <a href="#" class="current">Admin Settings</a><
-      /div>
+      <a href="#">Settings</a> <a href="#" class="current">Admin Settings</a>
+    </div>
     <h1>Admin Settings</h1>
   </div>
 
