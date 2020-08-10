@@ -21,7 +21,8 @@ class CategoryController extends Controller
    */
   public function index()
   {
-    //
+    $categories = Category::all();
+    return view('admin.categories.index', compact('categories'));
   }
 
   /**
@@ -31,7 +32,7 @@ class CategoryController extends Controller
    */
   public function create()
   {
-    return view('admin.categories.add_category');
+    return view('admin.categories.create');
   }
 
   /**
@@ -45,12 +46,12 @@ class CategoryController extends Controller
     $category = new Category();
     $category->name = $request->name;
     $category->description = $request->description;
-    $category->url = $request->url;
+    $category->url = str_slug($request->url);
 
     $category->save();
 
     Toastr::success('Category added successfully', 'Category Added!');
-    return redirect(route('admin.category.create'));
+    return redirect(route('admin.category.index'));
   }
 
   /**
@@ -72,7 +73,7 @@ class CategoryController extends Controller
    */
   public function edit(Category $category)
   {
-    //
+    return view('admin.categories.edit', compact('category'));
   }
 
   /**
@@ -84,7 +85,14 @@ class CategoryController extends Controller
    */
   public function update(Request $request, Category $category)
   {
-    //
+    $category->name = $request->name;
+    $category->description = $request->description;
+    $category->url = str_slug($request->url);
+
+    $category->save();
+
+    Toastr::success('Category Updated Successfully', "Category Updated");
+    return redirect(route('admin.category.index'));
   }
 
   /**
