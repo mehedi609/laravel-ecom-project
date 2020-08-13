@@ -52,12 +52,21 @@
                       >
                         Edit
                       </a>
-                      <a
-                        href="{{route('admin.category.destroy', $category->id)}}"
+                      <button
                         class="btn btn-danger btn-mini"
+                        onclick="deleteCategory({{$category->id}})"
                       >
                         Delete
-                      </a>
+                      </button>
+                      <form
+                        action="{{route('admin.category.destroy', $category->id)}}"
+                        method="post"
+                        class="d-none"
+                        id="delete-category-{{$category->id}}"
+                      >
+                        @csrf
+                        @method('DELETE')
+                      </form>
                     </td>
                   </tr>
                 @endforeach
@@ -78,4 +87,39 @@
   <script src="{{asset('js/backend_js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('js/backend_js/matrix.js')}}"></script>
   <script src="{{asset('js/backend_js/matrix.tables.js')}}"></script>
+
+  <script>
+      function deleteCategory(id) {
+          const swalWithBootstrapButtons = Swal.mixin({
+              customClass: {
+                  confirmButton: 'btn btn-success',
+                  cancelButton: 'btn btn-danger'
+              },
+              buttonsStyling: false
+          })
+
+          swalWithBootstrapButtons.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Yes, delete it!',
+              cancelButtonText: 'No, cancel!',
+              reverseButtons: true
+          }).then((result) => {
+              if (result.value) {
+                  event.preventDefault();
+                  $(`#delete-category-${id}`).submit()
+              } else if (
+                  result.dismiss === Swal.DismissReason.cancel
+              ) {
+                  swalWithBootstrapButtons.fire(
+                      'Cancelled',
+                      'Your imaginary file is safe :)',
+                      'error'
+                  )
+              }
+          })
+      }
+  </script>
 @endpush

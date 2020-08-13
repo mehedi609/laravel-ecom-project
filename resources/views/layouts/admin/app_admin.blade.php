@@ -43,6 +43,7 @@
     <script src="{{asset("js/backend_js/jquery.ui.custom.js")}}"></script>
     <script src="{{asset("js/backend_js/bootstrap.min.js")}}"></script>
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.all.min.js"></script>
 
     @stack('js')
 

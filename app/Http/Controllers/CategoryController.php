@@ -103,6 +103,8 @@ class CategoryController extends Controller
    */
   public function destroy(Category $category)
   {
-    //
+    $category->delete();
+    Toastr::success('Category Deleted Successfully', "Category Deleted");
+    return redirect()->back();
   }
 }
