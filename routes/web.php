@@ -31,10 +31,10 @@ Route::group(
     Route::put('update-password', 'AdminController@updatePassword')->name('update.password');
 
     // Category Routes (Admin)
-    Route::resource('category', 'CategoryController');
+    Route::resource('category', 'CategoryController')->except('show');
 
     // Product Routes (Admin)
-    Route::resource('product', 'ProductController');
+    Route::resource('product', 'ProductController')->except('show');
   }
 );
 

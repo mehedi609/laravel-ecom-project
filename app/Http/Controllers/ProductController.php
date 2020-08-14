@@ -19,7 +19,9 @@ class ProductController extends Controller
    */
   public function index()
   {
-    //
+    $products = Product::all();
+
+    return view('admin.products.index', compact('products'));
   }
 
   /**
@@ -59,15 +61,17 @@ class ProductController extends Controller
       if ($image_temp->isValid()) {
         $image_name = $this->createUniqueImageName($name, $image_temp);
 
-        //  Image Path
+        $this->saveImage($image_temp, $image_name);
+
+        /*//  Image Path
         $large_image_path = "images/backend_images/products/large/{$image_name}";
         $medium_image_path = "images/backend_images/products/medium/{$image_name}";
         $small_image_path = "images/backend_images/products/small/{$image_name}";
 
-        /*Resize Image*/
+        // Resize Image
         Image::make($image_temp)->save($large_image_path);
         Image::make($image_temp)->resize(600, 600)->save($medium_image_path);
-        Image::make($image_temp)->resize(300, 300)->save($small_image_path);
+        Image::make($image_temp)->resize(300, 300)->save($small_image_path);*/
 
         $product->image = $image_name;
       }
@@ -76,7 +80,7 @@ class ProductController extends Controller
     $product->save();
 
     Toastr::success('Product added successfully', 'Product Added!');
-    return redirect()->back();
+    return redirect(route('admin.product.index'));
   }
 
   /**
@@ -98,7 +102,7 @@ class ProductController extends Controller
    */
   public function edit(Product $product)
   {
-    //
+    return view('admin.products.edit', compact('product'));
   }
 
   /**
@@ -122,6 +126,16 @@ class ProductController extends Controller
   public function destroy(Product $product)
   {
     //
+  }
+
+  private function saveImage($image, $image_name)
+  {
+    $root = "images/backend_images/products";
+
+    /*Resize Image and save*/
+    Image::make($image)->save("{$root}/large/{$image_name}");
+    Image::make($image)->resize(600, 600)->save("{$root}/medium/{$image_name}");
+    Image::make($image)->resize(300, 300)->save("{$root}/small/{$image_name}");
   }
 
   private function createUniqueImageName($title, $image)
