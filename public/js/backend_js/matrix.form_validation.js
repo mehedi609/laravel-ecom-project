@@ -122,9 +122,42 @@ $(document).ready(function(){
 			description:{
 				required:true
 			},
-			url:{
+			parent_id: {
+				required: true
+			}
+		},
+		errorClass: "help-inline",
+		errorElement: "span",
+		highlight:function(element, errorClass, validClass) {
+			$(element).parents('.control-group').addClass('error');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).parents('.control-group').removeClass('error');
+			$(element).parents('.control-group').addClass('success');
+		}
+	});
+
+	$("#add_product").validate({
+		rules:{
+			name:{
+				required:true,
+				minlength: 4,
+				maxlength: 150,
+			},
+			color:{
 				required:true
 			},
+			code:{
+				required:true
+			},
+			category_id:{
+				required:true
+			},
+			price:{
+				required:true,
+				number: true
+			},
+
 		},
 		errorClass: "help-inline",
 		errorElement: "span",

@@ -11,4 +11,10 @@ class Category extends Model
     $this->attributes['name'] = $value;
     $this->attributes['url'] = str_slug($value);
   }
+
+  public function products()
+  {
+    return $this->hasMany('App\Product');
+  }
+
 }

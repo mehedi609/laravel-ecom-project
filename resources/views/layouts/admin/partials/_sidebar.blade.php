@@ -9,6 +9,7 @@
       </a>
     </li>
 
+    {{--Category--}}
     <li class="submenu">
       <a href="#">
         <i class="icon icon-th-list"></i>
@@ -17,6 +18,18 @@
       <ul>
         <li><a href="{{route('admin.category.create')}}">Add Category</a></li>
         <li><a href="{{route('admin.category.index')}}">View Category</a></li>
+      </ul>
+    </li>
+
+    {{--Product--}}
+    <li class="submenu">
+      <a href="#">
+        <i class="icon icon-th-list"></i>
+        <span>Product</span> <span class="label label-important">2</span>
+      </a>
+      <ul>
+        <li><a href="{{route('admin.product.create')}}">Add Product</a></li>
+        <li><a href="{{route('admin.product.index')}}">View Product</a></li>
       </ul>
     </li>
 
