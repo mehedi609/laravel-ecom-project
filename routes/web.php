@@ -32,6 +32,9 @@ Route::group(
 
     // Category Routes (Admin)
     Route::resource('category', 'CategoryController');
+
+    // Product Routes (Admin)
+    Route::resource('product', 'ProductController');
   }
 );
 
