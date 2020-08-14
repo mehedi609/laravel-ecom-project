@@ -54,9 +54,14 @@
               </div>
 
               <div class="control-group">
-                <label class="control-label">URL</label>
+                <label class="control-label">Select Category</label>
                 <div class="controls">
-                  <input type="text" name="url" id="url" placeholder="URL">
+                  <select style="width: 220px;" name="parent_id">
+                    <option value="0">Parent Category</option>
+                    @foreach ($parent_categories as $parent_category)
+                      <option value="{{$parent_category->id}}">{{$parent_category->name}}</option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
 

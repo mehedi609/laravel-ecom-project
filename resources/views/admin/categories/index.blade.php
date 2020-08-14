@@ -35,6 +35,7 @@
                 <tr>
                   <th>Category ID</th>
                   <th>Category Name</th>
+                  <th>Parent Category ID with Name</th>
                   <th>Category URL</th>
                   <th>Actions</th>
                 </tr>
@@ -44,6 +45,16 @@
                   <tr class="gradeA">
                     <td>{{$category->id}}</td>
                     <td>{{$category->name}}</td>
+                    @if ($category->parent_id == 0)
+                        <td>0 => Main Category</td>
+                    @else
+                      @php
+                        $parent_category = \App\Category::where('id', $category->parent_id)->first();
+                      @endphp
+                      <td>{{"{$parent_category->id} => {$parent_category->name}"}}</td>
+                    @endif
+
+{{--                    <td>{{$category->parent_id}}</td>--}}
                     <td>{{$category->url}}</td>
                     <td class="center">
                       <a

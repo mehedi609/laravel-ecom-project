@@ -32,7 +32,8 @@ class CategoryController extends Controller
    */
   public function create()
   {
-    return view('admin.categories.create');
+    $parent_categories = Category::where('parent_id', 0)->get();
+    return view('admin.categories.create', compact('parent_categories'));
   }
 
   /**
@@ -46,7 +47,8 @@ class CategoryController extends Controller
     $category = new Category();
     $category->name = $request->name;
     $category->description = $request->description;
-    $category->url = str_slug($request->url);
+    $category->parent_id = $request->parent_id;
+//    $category->url = str_slug($request->url);
 
     $category->save();
 
@@ -73,7 +75,8 @@ class CategoryController extends Controller
    */
   public function edit(Category $category)
   {
-    return view('admin.categories.edit', compact('category'));
+    $parent_categories = Category::where('parent_id', 0)->get();
+    return view('admin.categories.edit', compact('category', 'parent_categories'));
   }
 
   /**
@@ -87,7 +90,7 @@ class CategoryController extends Controller
   {
     $category->name = $request->name;
     $category->description = $request->description;
-    $category->url = str_slug($request->url);
+    $category->parent_id = $request->parent_id;
 
     $category->save();
 
